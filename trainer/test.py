@@ -17,6 +17,8 @@ from model import Model
 def validation(model, criterion, evaluation_loader, converter, opt, device):
     """ validation or evaluation """
     n_correct = 0
+    c_correct = 0
+    c_total = 0
     norm_ED = 0
     length_of_data = 0
     infer_time = 0
@@ -98,6 +100,13 @@ def validation(model, criterion, evaluation_loader, converter, opt, device):
             else:
                 norm_ED += edit_distance(pred, gt) / len(pred)
 
+            # char
+            if len(pred) == 0:
+                c_correct += 0
+            else:
+                c_correct += sum(1 for c in pred if c in gt)
+                c_total += len(gt)
+
             # calculate confidence score (= multiply of pred_max_prob)
             try:
                 confidence_score = pred_max_prob.cumprod(dim=0)[-1]
@@ -108,5 +117,6 @@ def validation(model, criterion, evaluation_loader, converter, opt, device):
 
     accuracy = n_correct / float(length_of_data) * 100
     norm_ED = norm_ED / float(length_of_data) # ICDAR2019 Normalized Edit Distance
+    cer = 1 - (c_correct / c_total)
 
-    return valid_loss_avg.val(), accuracy, norm_ED, preds_str, confidence_score_list, labels, infer_time, length_of_data
+    return valid_loss_avg.val(), accuracy, norm_ED, preds_str, confidence_score_list, labels, infer_time, length_of_data, cer

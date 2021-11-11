@@ -230,7 +230,7 @@ def train(opt, show_number = 2, amp=False):
                 model.eval()
                 with torch.no_grad():
                     valid_loss, current_accuracy, current_norm_ED, preds, confidence_score, labels,\
-                    infer_time, length_of_data = validation(model, criterion, valid_loader, converter, opt, device)
+                    infer_time, length_of_data, cer = validation(model, criterion, valid_loader, converter, opt, device)
                 model.train()
 
                 # training loss and validation loss
@@ -250,6 +250,7 @@ def train(opt, show_number = 2, amp=False):
 
                 loss_model_log = f'{loss_log}\n{current_model_log}\n{best_model_log}'
                 print(loss_model_log)
+                print(f"CER: {cer}")
                 log.write(loss_model_log + '\n')
 
                 # show some predicted results
