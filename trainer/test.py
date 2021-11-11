@@ -79,6 +79,7 @@ def validation(model, criterion, evaluation_loader, converter, opt, device):
                 pred_max_prob = pred_max_prob[:pred_EOS]
 
             if pred == gt:
+                print(gt)
                 n_correct += 1
 
             '''
