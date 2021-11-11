@@ -211,6 +211,7 @@ class CTCLabelConverter(object):
     def __init__(self, character, separator_list = {}, dict_pathlist = {}):
         # character (str): set of the possible characters.
         dict_character = list(character)
+        assert '查' in dict_character, print(dict_character)
 
         #special_character = ['\xa2', '\xa3', '\xa4','\xa5']
         #self.separator_char = special_character[:len(separator)]
