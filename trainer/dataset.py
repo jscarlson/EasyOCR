@@ -148,7 +148,7 @@ class OCRDataset(Dataset):
         print(root)
         self.df = pd.read_csv(
             os.path.join(root,'labels.csv'), engine='python', 
-            names=['filename', 'words'])
+            usecols=['filename', 'words'])
         print(self.df.head())
         self.nSamples = len(self.df)
 
