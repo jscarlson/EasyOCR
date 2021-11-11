@@ -2,7 +2,7 @@ number: 'None'
 symbol: 'None'
 lang_char: './pr_charset.txt'
 experiment_name: 'pr_0'
-train_data: 'easyocr_data'
+train_data: 'easyocr_data/pr_train'
 valid_data: 'easyocr_data/pr_val'
 manualSeed: 1111
 workers: 6
