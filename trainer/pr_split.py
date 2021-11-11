@@ -44,7 +44,7 @@ if __name__ == "__main__":
         train_labels.append((sbname, seq_str))
         copy(os.path.join(seg_dir, sbname), train_dir)
     train_labels_df = pd.DataFrame(train_labels, columns=["filename", "words"])
-    train_labels_df.to_csv(os.path.join(train_dir, "labels.csv"), index=False)
+    train_labels_df.to_csv(os.path.join(train_dir, "labels.csv"))
 
     val_labels = []
     for sbname in val_seg_basenames:
@@ -52,4 +52,4 @@ if __name__ == "__main__":
         val_labels.append((sbname, seq_str))
         copy(os.path.join(seg_dir, sbname), val_dir)
     val_labels_df = pd.DataFrame(val_labels, columns=["filename", "words"])
-    val_labels_df.to_csv(os.path.join(val_dir, "labels.csv"), index=False)
+    val_labels_df.to_csv(os.path.join(val_dir, "labels.csv"))
