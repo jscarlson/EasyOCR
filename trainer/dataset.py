@@ -147,13 +147,14 @@ class OCRDataset(Dataset):
         self.opt = opt
         print(root)
         self.df = pd.read_csv(
-            os.path.join(root,'labels.csv'), engine='python', 
-            usecols=['filename', 'words'], index_col=0)
+            os.path.join(root,'labels.csv'), 
+            engine='python', 
+            usecols=['filename', 'words'])
         print(self.df.head())
         self.nSamples = len(self.df)
 
         if self.opt.data_filtering_off:
-            self.filtered_index_list = [index + 1 for index in range(self.nSamples)]
+            self.filtered_index_list = [index for index in range(self.nSamples)]
         else:
             self.filtered_index_list = []
             for index in range(self.nSamples):
