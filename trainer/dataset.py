@@ -184,8 +184,9 @@ class OCRDataset(Dataset):
             label = label.lower()
 
         # We only train and evaluate on alphanumerics (or pre-defined character set in train.py)
-        out_of_char = f'[^{self.opt.character}]'
-        label = re.sub(out_of_char, '', label)
+        if not self.opt.data_filtering_off:
+            out_of_char = f'[^{self.opt.character}]'
+            label = re.sub(out_of_char, '', label)
 
         return (img, label)
 
