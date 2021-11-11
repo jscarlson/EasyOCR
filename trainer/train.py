@@ -166,7 +166,7 @@ def train(opt, show_number = 2, amp=False):
 
     start_time = time.time()
     best_accuracy = -1
-    best_norm_ED = -1
+    best_norm_ED = 1
     i = start_iter
 
     scaler = GradScaler()
