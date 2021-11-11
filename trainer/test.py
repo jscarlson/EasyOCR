@@ -95,9 +95,9 @@ def validation(model, criterion, evaluation_loader, converter, opt, device):
             if len(gt) == 0 or len(pred) ==0:
                 norm_ED += 0
             elif len(gt) > len(pred):
-                norm_ED += 1 - edit_distance(pred, gt) / len(gt)
+                norm_ED += edit_distance(pred, gt) / len(gt)
             else:
-                norm_ED += 1 - edit_distance(pred, gt) / len(pred)
+                norm_ED += edit_distance(pred, gt) / len(pred)
 
             # calculate confidence score (= multiply of pred_max_prob)
             try:
