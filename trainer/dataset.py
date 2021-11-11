@@ -173,9 +173,11 @@ class OCRDataset(Dataset):
     def __getitem__(self, index):
         index = self.filtered_index_list[index]
         img_fname = self.df.at[index,'filename']
+        print(img_fname)
         img_fpath = os.path.join(self.root, img_fname)
         print(self.root, img_fname)
         label = self.df.at[index,'words']
+        exit(1)
 
         if self.opt.rgb:
             img = Image.open(img_fpath).convert('RGB')  # for color image
