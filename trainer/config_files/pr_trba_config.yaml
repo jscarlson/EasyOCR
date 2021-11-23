@@ -34,7 +34,7 @@ data_filtering_off: True
 Transformation: 'TPS'
 FeatureExtraction: 'ResNet'
 SequenceModeling: 'BiLSTM'
-Prediction: 'Attention'
+Prediction: 'Attn'
 num_fiducial: 20
 input_channel: 1
 output_channel: 256
