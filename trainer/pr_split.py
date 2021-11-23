@@ -30,7 +30,7 @@ if __name__ == "__main__":
     seg_paths = glob(os.path.join(seg_dir, "*.png"))
     seg_basenames = [os.path.basename(x) for x in seg_paths]
 
-    seg_ids = [seg_id_extract_pr1954(p) for p in seg_paths]
+    seg_ids = [seg_id_extract_pr1954(p) for p in seg_basenames]
     print(seg_ids)
     uni_seg_ids = sorted(list(set(seg_ids)))
 
