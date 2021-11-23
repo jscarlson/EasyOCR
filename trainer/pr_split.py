@@ -31,7 +31,6 @@ if __name__ == "__main__":
     seg_basenames = [os.path.basename(x) for x in seg_paths]
 
     seg_ids = [seg_id_extract_pr1954(p) for p in seg_basenames]
-    print(seg_ids)
     uni_seg_ids = sorted(list(set(seg_ids)))
 
     """
@@ -44,9 +43,7 @@ if __name__ == "__main__":
 
     with open(args.seg_file) as f:
         val_seg_ids = f.read().split()
-        print(val_seg_ids)
         train_seg_ids = [x for x in uni_seg_ids if not x in val_seg_ids]
-    print(f"Len val {len(val_seg_ids)}; len train {len(train_seg_ids)}")
 
     train_seg_basenames = [x for x in seg_basenames if seg_id_extract_pr1954(x) in train_seg_ids]
     val_seg_basenames = [x for x in seg_basenames if seg_id_extract_pr1954(x) in val_seg_ids]
