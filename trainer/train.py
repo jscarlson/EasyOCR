@@ -212,7 +212,7 @@ def train(opt, show_number = 2, amp=False):
                 cost = criterion(preds, text.to(device), preds_size.to(device), length.to(device))
                 torch.backends.cudnn.enabled = True
             else:
-                preds = model(image, text[:, :-1])  # align with Attention.forward
+                preds = model(image, text=text[:, :-1])  # align with Attention.forward
                 target = text[:, 1:]  # without [GO] Symbol
                 cost = criterion(preds.view(-1, preds.shape[-1]), target.contiguous().view(-1))
             cost.backward()
