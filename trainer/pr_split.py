@@ -9,15 +9,9 @@ import argparse
 
 def seg_id_extract_pr1954(p):
         if "PAIRED" in p:
-            return "_".join(os.path.basename(p).split("_")[:-4])
+            return "PAIRED_" + "_".join(os.path.basename(p).split("_")[:-4])
         else:
             return None
-
-def seg_id_extract_tk1957(p):
-    if "PAIRED" in p:
-        return "_".join(os.path.basename(p).split("_")[:-3])
-    else:
-        return None
 
 
 if __name__ == "__main__":
@@ -41,7 +35,7 @@ if __name__ == "__main__":
 
     seg_ids = [seg_id_extract_pr1954(p) for p in seg_paths]
     uni_seg_ids = sorted(list(set(seg_ids)))
-    
+
     """
     np.random.seed(99)
     np.random.shuffle(uni_seg_ids)
