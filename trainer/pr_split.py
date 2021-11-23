@@ -9,6 +9,8 @@ import argparse
 
 def seg_id_extract_pr1954(p):
         if "PAIRED" in p:
+            print(p)
+            print("PAIRED_" + "_".join(os.path.basename(p).split("_")[:-4]))
             return "PAIRED_" + "_".join(os.path.basename(p).split("_")[:-4])
         else:
             return None
