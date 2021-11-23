@@ -8,7 +8,7 @@ import argparse
 
 
 def seg_id_extract_pr1954(p):
-    return "PAIRED_" + p # "_".join(p.split("_")[:-4])    
+    return "PAIRED_" + "_".join(p.split("_")[:-1])    
 
 
 if __name__ == "__main__":
