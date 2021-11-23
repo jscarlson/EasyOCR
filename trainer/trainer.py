@@ -4,6 +4,7 @@ import yaml
 from train import train
 from utils import AttrDict
 import pandas as pd
+import argparse
 
 cudnn.benchmark = True
 cudnn.deterministic = False
@@ -19,5 +20,9 @@ def get_config(file_path):
 
 if __name__ == '__main__':
 
-    opt = get_config("config_files/pr_config.yaml")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config_file", type=str, required=True)
+    args = parser.parse_args()
+
+    opt = get_config(args.config_file)
     train(opt, amp=False)
