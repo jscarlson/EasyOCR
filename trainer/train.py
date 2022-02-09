@@ -172,6 +172,8 @@ def train(opt, show_number = 2, amp=False):
 
     scaler = GradScaler()
     t1= time.time()
+
+    print("Begin training!")
         
     while(True):
         # train part
@@ -216,10 +218,10 @@ def train(opt, show_number = 2, amp=False):
                 preds = model(image, text[:, :-1])  # align with Attention.forward
                 target = text[:, 1:]  # without [GO] Symbol
                 cost = criterion(preds.view(-1, preds.shape[-1]), target.contiguous().view(-1))
-            wandb.log({"train/loss": cost})
             cost.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), opt.grad_clip) 
             optimizer.step()
+            wandb.log({"train/loss": cost})
         loss_avg.add(cost)
 
         # validation part

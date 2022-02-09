@@ -22,8 +22,8 @@ select_data: 'tk1957_train' # this is dataset folder in train_data
 batch_ratio: '1' 
 total_data_usage_ratio: 1.0
 batch_max_length: 34 
-imgH: 64
-imgW: 600
+imgH: 600
+imgW: 64
 rgb: False
 contrast_adjust: False
 sensitive: True
