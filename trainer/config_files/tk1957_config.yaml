@@ -1,7 +1,7 @@
 number: 'None'
 symbol: 'None'
 lang_char: '/srv/ocr/github_repos/ocr-as-retrieval/fullpipe_tk_7030_vit/ref.txt'
-experiment_name: 'tk1957_0'
+experiment_name: 'tk1957_easyocr_crnn'
 train_data: 'easyocr_data/tk1957_train'
 valid_data: 'easyocr_data/tk1957_val'
 manualSeed: 1111

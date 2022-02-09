@@ -23,9 +23,8 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--config_file", type=str, required=True)
-    parser.add_argument("--run_name", type=str, required=True)
     args = parser.parse_args()
 
-    wandb.init(project="EasyOCR", name=args.run_name)
     opt = get_config(args.config_file)
+    wandb.init(project="EasyOCR", name=opt.experiment_name)
     train(opt, amp=False)
