@@ -203,6 +203,7 @@ def train(opt, show_number = 2, amp=False):
             scaler.step(optimizer)
             scaler.update()
         else:
+            print("No amp!")
             image_tensors, labels = train_dataset.get_batch()
             image = image_tensors.to(device)
             text, length = converter.encode(labels, batch_max_length=opt.batch_max_length)
