@@ -6,9 +6,9 @@ train_data: 'easyocr_data/tk1957_train'
 valid_data: 'easyocr_data/tk1957_val'
 manualSeed: 1111
 workers: 6
-batch_size: 64 #32
-num_iter: 30000 # 300000
-valInterval: 2000 # 20000
+batch_size: 1 #32
+num_iter: 1000 # 300000
+valInterval: 250 # 20000
 saved_model: './japanese_g2.pth'
 FT: True
 optim: False # default is Adadelta
