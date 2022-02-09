@@ -22,7 +22,7 @@ if __name__ == "__main__":
     seg_dir_lab = os.path.join(root_dir, "seg_labeled")
     coco_train_path = os.path.join(root_dir, "tk1957_ann_file_train70.json")
     coco_val_path = os.path.join(root_dir, "tk1957_ann_file_test30.json")
-    seg_paths = glob(os.path.join(seg_dir, "*.png"))
+    seg_paths = glob(os.path.join(seg_dir_unlab, "*.png"))
     seg_basenames = [os.path.basename(x) for x in seg_paths]
 
     with open(coco_train_path) as f: coco_train = json.load(f)
