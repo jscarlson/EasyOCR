@@ -10,6 +10,7 @@ import torch.optim as optim
 import torch.utils.data
 from torch.cuda.amp import autocast, GradScaler
 import numpy as np
+import wandb
 
 from utils import CTCLabelConverter, AttnLabelConverter, Averager
 from dataset import hierarchical_dataset, AlignCollate, Batch_Balanced_Dataset
@@ -215,6 +216,7 @@ def train(opt, show_number = 2, amp=False):
                 preds = model(image, text[:, :-1])  # align with Attention.forward
                 target = text[:, 1:]  # without [GO] Symbol
                 cost = criterion(preds.view(-1, preds.shape[-1]), target.contiguous().view(-1))
+            wandb.log({"train/loss": cost})
             cost.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), opt.grad_clip) 
             optimizer.step()
@@ -231,6 +233,7 @@ def train(opt, show_number = 2, amp=False):
                 with torch.no_grad():
                     valid_loss, current_accuracy, current_norm_ED, preds, confidence_score, labels,\
                     infer_time, length_of_data, cer = validation(model, criterion, valid_loader, converter, opt, device)
+                    wandb.log({"eval/textline_accuracy": current_accuracy, "eval/cer": current_norm_ED})
                 model.train()
 
                 # training loss and validation loss

@@ -5,6 +5,7 @@ from train import train
 from utils import AttrDict
 import pandas as pd
 import argparse
+import wandb
 
 cudnn.benchmark = True
 cudnn.deterministic = False
@@ -22,7 +23,9 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--config_file", type=str, required=True)
+    parser.add_argument("--run_name", type=str, required=True)
     args = parser.parse_args()
 
+    wandb.init(project="EasyOCR", name=args.run_name)
     opt = get_config(args.config_file)
     train(opt, amp=False)
