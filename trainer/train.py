@@ -203,12 +203,9 @@ def train(opt, show_number = 2, amp=False):
             scaler.step(optimizer)
             scaler.update()
         else:
-            print("No amp!")
             image_tensors, labels = train_dataset.get_batch()
             image = image_tensors.to(device)
-            print("here 1")
             text, length = converter.encode(labels, batch_max_length=opt.batch_max_length)
-            print("here 2")
             batch_size = image.size(0)
             print(image.size())
             if 'CTC' in opt.Prediction:
@@ -229,7 +226,6 @@ def train(opt, show_number = 2, amp=False):
             wandb.log({"train/loss": cost})
         loss_avg.add(cost)
 
-        print("Out of training loop!")
         # validation part
         if (i % opt.valInterval == 0) and (i!=0):
             print('training time: ', time.time()-t1)
