@@ -249,10 +249,15 @@ class CTCLabelConverter(object):
             length: length of each text. [batch_size]
         """
         
-        length = [len(s) for s in text]
-        text = ''.join(text)
-        text = [self.dict[char] for char in text]
-        
+        try:
+            length = [len(s) for s in text]
+            text = ''.join(text)
+            text = [self.dict[char] for char in text]
+        except KeyError as e:
+            print(e)
+            print(text)
+            exit(1)
+
         return (torch.IntTensor(text), torch.IntTensor(length))
 
     def decode_greedy(self, text_index, length):
