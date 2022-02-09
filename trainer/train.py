@@ -204,7 +204,6 @@ def train(opt, show_number = 2, amp=False):
             scaler.update()
         else:
             image_tensors, labels = train_dataset.get_batch()
-            print(labels)
             image = image_tensors.to(device)
             text, length = converter.encode(labels, batch_max_length=opt.batch_max_length)
             batch_size = image.size(0)

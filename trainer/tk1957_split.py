@@ -36,6 +36,8 @@ if __name__ == "__main__":
     for sbname in train_seg_basenames:
         sbname_w_labels = [x for x in os.listdir(seg_dir_lab) if "_".join(x.split("_")[:-1]) == os.path.splitext(sbname)[0]][0]
         seq_str = os.path.splitext(sbname_w_labels)[0].split("_")[-1]
+        if "ゲ" in seq_str:
+                seq_str = seq_str.replace("ゲ", "ゲ")   
         train_labels.append((sbname, seq_str))
         copy(os.path.join(seg_dir_unlab, sbname), train_dir)
     train_labels_df = pd.DataFrame(train_labels, columns=["filename", "words"])
@@ -45,6 +47,8 @@ if __name__ == "__main__":
     for sbname in val_seg_basenames:
         sbname_w_labels = [x for x in os.listdir(seg_dir_lab) if "_".join(x.split("_")[:-1]) == os.path.splitext(sbname)[0]][0]
         seq_str = os.path.splitext(sbname_w_labels)[0].split("_")[-1]
+        if "ゲ" in seq_str:
+            seq_str = seq_str.replace("ゲ", "ゲ") 
         val_labels.append((sbname, seq_str))
         copy(os.path.join(seg_dir_unlab, sbname), val_dir)
     val_labels_df = pd.DataFrame(val_labels, columns=["filename", "words"])
