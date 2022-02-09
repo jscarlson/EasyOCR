@@ -206,7 +206,9 @@ def train(opt, show_number = 2, amp=False):
             print("No amp!")
             image_tensors, labels = train_dataset.get_batch()
             image = image_tensors.to(device)
+            print("here 1")
             text, length = converter.encode(labels, batch_max_length=opt.batch_max_length)
+            print("here 2")
             batch_size = image.size(0)
             print(image.size())
             if 'CTC' in opt.Prediction:
