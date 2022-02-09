@@ -13,8 +13,8 @@ if __name__ == "__main__":
     os.makedirs(save_dir, exist_ok=True)
     train_dir = os.path.join(save_dir, "tk1957_train")
     val_dir = os.path.join(save_dir, "tk1957_val")
-    os.makedirs(train_dir)
-    os.makedirs(val_dir)
+    os.makedirs(train_dir, exist_ok=True)
+    os.makedirs(val_dir, exist_ok=True)
 
     root_dir = "/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/ocr_datasets/teikoku/1957"
     chars_dir = os.path.join(root_dir, "char_crops")
