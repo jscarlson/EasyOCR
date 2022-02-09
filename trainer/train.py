@@ -227,6 +227,7 @@ def train(opt, show_number = 2, amp=False):
             wandb.log({"train/loss": cost})
         loss_avg.add(cost)
 
+        print("Out of training loop!")
         # validation part
         if (i % opt.valInterval == 0) and (i!=0):
             print('training time: ', time.time()-t1)
