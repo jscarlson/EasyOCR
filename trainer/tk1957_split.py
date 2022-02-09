@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
     train_labels = []
     for sbname in train_seg_basenames:
-        sbname_w_labels = [x for x in os.listdir(seg_dir_lab) if "_".join(x.split("_")[:-1]) == sbname][0]
+        sbname_w_labels = [x for x in os.listdir(seg_dir_lab) if "_".join(x.split("_")[:-1]) == os.path.splitext(sbname)[0]][0]
         seq_str = os.path.splitext(sbname_w_labels)[0].split("_")[-1]
         train_labels.append((sbname, seq_str))
         copy(os.path.join(seg_dir_unlab, sbname), train_dir)
@@ -43,7 +43,7 @@ if __name__ == "__main__":
 
     val_labels = []
     for sbname in val_seg_basenames:
-        sbname_w_labels = [x for x in os.listdir(seg_dir_lab) if "_".join(x.split("_")[:-1]) == sbname][0]
+        sbname_w_labels = [x for x in os.listdir(seg_dir_lab) if "_".join(x.split("_")[:-1]) == os.path.splitext(sbname)[0]][0]
         seq_str = os.path.splitext(sbname_w_labels)[0].split("_")[-1]
         val_labels.append((sbname, seq_str))
         copy(os.path.join(seg_dir_unlab, sbname), val_dir)
