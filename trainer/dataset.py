@@ -184,6 +184,9 @@ class OCRDataset(Dataset):
         else:
             img = Image.open(img_fpath).convert('L')
 
+        if self.opt.vertical:
+            img = img.rotate(angle=90)
+
         if not self.opt.sensitive:
             label = label.lower()
 
