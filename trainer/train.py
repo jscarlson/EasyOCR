@@ -208,6 +208,7 @@ def train(opt, show_number = 2, amp=False):
             image = image_tensors.to(device)
             text, length = converter.encode(labels, batch_max_length=opt.batch_max_length)
             batch_size = image.size(0)
+            print(image.size())
             if 'CTC' in opt.Prediction:
                 preds = model(image, text).log_softmax(2)
                 preds_size = torch.IntTensor([preds.size(1)] * batch_size)
@@ -222,6 +223,7 @@ def train(opt, show_number = 2, amp=False):
             cost.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), opt.grad_clip) 
             optimizer.step()
+            print(cost)
             wandb.log({"train/loss": cost})
         loss_avg.add(cost)
 
