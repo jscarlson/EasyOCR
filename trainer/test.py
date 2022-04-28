@@ -19,6 +19,7 @@ def validation(model, criterion, evaluation_loader, converter, opt, device):
     n_correct = 0
     c_correct = 0
     c_total = 0
+    num_edits = 0
     norm_ED = 0
     length_of_data = 0
     infer_time = 0
@@ -93,18 +94,20 @@ def validation(model, criterion, evaluation_loader, converter, opt, device):
             '''
             
             # ICDAR2019 Normalized Edit Distance 
-            if len(gt) == 0 or len(pred) ==0:
+            if len(gt) == 0 or len(pred) == 0:
                 norm_ED += 0
             elif len(gt) > len(pred):
                 norm_ED += edit_distance(pred, gt) / len(gt)
             else:
                 norm_ED += edit_distance(pred, gt) / len(pred)
 
+            # classic CER
+            num_edits += edit_distance(pred, gt)
+
             # char
             if len(pred) == 0:
                 c_correct += 0
             else:
-                c_correct += sum(1 for c in pred if c in gt)
                 c_total += len(gt)
 
             # calculate confidence score (= multiply of pred_max_prob)
@@ -117,6 +120,6 @@ def validation(model, criterion, evaluation_loader, converter, opt, device):
 
     accuracy = n_correct / float(length_of_data) * 100
     norm_ED = norm_ED / float(length_of_data) # ICDAR2019 Normalized Edit Distance
-    cer = 1 - (c_correct / c_total)
+    cer = num_edits / c_total
 
     return valid_loss_avg.val(), accuracy, norm_ED, preds_str, confidence_score_list, labels, infer_time, length_of_data, cer
