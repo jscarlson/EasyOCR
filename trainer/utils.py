@@ -254,6 +254,7 @@ class CTCLabelConverter(object):
             text = ''.join(text)
             text = [self.dict[char] for char in text]
         except KeyError as e:
+            print("Custom key error written by Jake!")
             print(e)
             print(list(text))
             exit(1)

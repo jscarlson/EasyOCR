@@ -1,5 +1,5 @@
 number: '0123456789'
-symbol: "!\"#$%&\\'()*+,-./:;<=>?@[]{|}~"
+symbol: "!\"#$%&\\'()*+,-./:;<=>?@[]{|}~ "
 lang_char: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
 experiment_name: 'accnd_0'
 train_data: 'easyocr_data/accnd_train'

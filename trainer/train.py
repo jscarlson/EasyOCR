@@ -168,6 +168,7 @@ def train(opt, show_number = 2, amp=False):
     start_time = time.time()
     best_accuracy = -1
     best_norm_ED = 1
+    best_cer = 1
     i = start_iter
 
     scaler = GradScaler()
@@ -248,9 +249,9 @@ def train(opt, show_number = 2, amp=False):
                 if current_accuracy > best_accuracy:
                     best_accuracy = current_accuracy
                     torch.save(model.state_dict(), f'./saved_models/{opt.experiment_name}/best_accuracy.pth')
-                if current_norm_ED < best_norm_ED:
-                    best_norm_ED = current_norm_ED
-                    torch.save(model.state_dict(), f'./saved_models/{opt.experiment_name}/best_norm_ED.pth')
+                if cer < best_cer:
+                    best_cer = cer
+                    torch.save(model.state_dict(), f'./saved_models/{opt.experiment_name}/best_cer_ED.pth')
                 best_model_log = f'{"Best_accuracy":17s}: {best_accuracy}, {"Best_norm_ED":17s}: {best_norm_ED}'
 
                 loss_model_log = f'{loss_log}\n{current_model_log}\n{best_model_log}'
