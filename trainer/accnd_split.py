@@ -7,7 +7,6 @@ import json
 def create_datasets(seg_basenames, seg_texts, seg_dir, save_dir):
     labeled_pairs = []
     for fn, txt in zip(seg_basenames, seg_texts):
-        print(txt)
         labeled_pairs.append((fn, txt))
         copy(os.path.join(seg_dir, fn), save_dir)
     labels_df = pd.DataFrame(labeled_pairs, columns=["filename", "words"])
