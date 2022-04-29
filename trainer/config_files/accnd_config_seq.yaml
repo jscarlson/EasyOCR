@@ -1,7 +1,7 @@
 number: '0123456789'
 symbol: "!\"#$%&\\'()*+,-./:;<=>?@[]{|}~ "
 lang_char: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-experiment_name: 'accnd_newPredOnly'
+experiment_name: 'accnd_newPred_ftSeq'
 train_data: 'easyocr_data/accnd_train'
 valid_data: 'easyocr_data/accnd_val'
 manualSeed: 1111
@@ -43,4 +43,4 @@ hidden_size: 256
 decode: 'greedy'
 new_prediction: True
 freeze_FeatureFxtraction: True
-freeze_SequenceModeling: True
+freeze_SequenceModeling: False
