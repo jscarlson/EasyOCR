@@ -12,7 +12,7 @@ valInterval: 2000 # 20000
 saved_model: './saved_models/accnd_0/best_cer_ED.pth' #'saved_models/en_filtered/iter_300000.pth'
 FT: True
 optim: False # default is Adadelta
-lr: 1.
+lr: 2.
 beta1: 0.9
 rho: 0.95
 eps: 0.00000001
