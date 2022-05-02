@@ -9,7 +9,7 @@ workers: 6
 batch_size: 32 #32
 num_iter: 30000 # 300000
 valInterval: 2000 # 20000
-saved_model: './english_g2.pth' #'saved_models/en_filtered/iter_300000.pth'
+saved_model: './TPS-ResNet-BiLSTM-Attn-case-sensitive.pth' #'saved_models/en_filtered/iter_300000.pth'
 FT: True
 optim: False # default is Adadelta
 lr: 1.
