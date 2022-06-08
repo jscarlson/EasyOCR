@@ -16,7 +16,7 @@ def get_config(file_path):
     opt = AttrDict(opt)
     if os.path.isfile(opt.lang_char):
         with open(opt.lang_char) as f:
-            opt.character = "".join(f.read().split())
+            opt.character = "".join(chr(int(i)) for i in f.read().split())
     else:
         opt.character = opt.number + opt.symbol + opt.lang_char
     os.makedirs(f'./saved_models/{opt.experiment_name}', exist_ok=True)
