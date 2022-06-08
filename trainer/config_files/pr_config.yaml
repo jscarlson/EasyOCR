@@ -1,7 +1,7 @@
 number: 'None'
 symbol: 'None'
 lang_char: './pr_charset.txt'
-experiment_name: 'pr_0'
+experiment_name: 'pr_init'
 train_data: 'easyocr_data/pr_train'
 valid_data: 'easyocr_data/pr_val'
 manualSeed: 1111
