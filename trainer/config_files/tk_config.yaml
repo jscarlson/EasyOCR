@@ -1,14 +1,14 @@
 number: 'None'
 symbol: 'None'
-lang_char: '/srv/ocr/github_repos/ocr-as-retrieval/fullpipe_tk_7030_vit/ref.txt'
-experiment_name: 'tk1957_easyocr_crnn'
-train_data: 'easyocr_data/tk1957_train'
-valid_data: 'easyocr_data/tk1957_val'
+lang_char: '/srv/ocr/github_repos/ocr-as-retrieval/full_charset_jp.txt'
+experiment_name: 'tk_init'
+train_data: 'easyocr_data/tk_train'
+valid_data: 'easyocr_data/tk_val'
 manualSeed: 1111
 workers: 6
-batch_size: 32 #32
+batch_size: 64 #32
 num_iter: 30000 # 300000
-valInterval: 5000 # 20000
+valInterval: 2000 # 20000
 saved_model: './japanese_g2.pth'
 FT: True
 optim: False # default is Adadelta
@@ -18,14 +18,14 @@ rho: 0.95
 eps: 0.00000001
 grad_clip: 5
 #Data processing
-select_data: 'tk1957_train' # this is dataset folder in train_data
+select_data: 'tk_train' # this is dataset folder in train_data
 batch_ratio: '1' 
 total_data_usage_ratio: 1.0
 batch_max_length: 34 
 imgH: 64
 imgW: 600
 rgb: False
-vertical: True
+vertical: False
 contrast_adjust: False
 sensitive: True
 PAD: True
@@ -43,4 +43,4 @@ hidden_size: 256
 decode: 'greedy'
 new_prediction: True
 freeze_FeatureFxtraction: True
-freeze_SequenceModeling: False
+freeze_SequenceModeling: True
