@@ -30,7 +30,7 @@ sensitive: True
 PAD: True
 contrast_adjust: 0.0
 data_filtering_off: True
-vertical: True
+vertical: False
 # Model Architecture
 Transformation: 'None'
 FeatureExtraction: 'VGG'
