@@ -9,7 +9,7 @@ workers: 6
 batch_size: 64 #32
 num_iter: 30000 # 300000
 valInterval: 2000 # 20000
-saved_model: './saved_models/pr_init/best_norm_ED.pth'
+saved_model: './saved_models/pr_init/best_cer_ED.pth'
 FT: True
 optim: False # default is Adadelta
 lr: 1.
