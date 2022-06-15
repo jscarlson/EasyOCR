@@ -4,12 +4,13 @@ lang_char: '/srv/ocr/github_repos/ocr-as-retrieval/full_charset_jp.txt'
 experiment_name: 'pr_ftex'
 train_data: 'easyocr_data/pr_train'
 valid_data: 'easyocr_data/pr_val'
+test_data: 'easyocr_data/pr_test'
 manualSeed: 1111
 workers: 6
 batch_size: 64 #32
 num_iter: 30000 # 300000
 valInterval: 2000 # 20000
-saved_model: './saved_models/pr_seq/best_cer_ED.pth'
+saved_model: './saved_models/pr_seq/best_cer.pth'
 FT: True
 optim: False # default is Adadelta
 lr: 1.
