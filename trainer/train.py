@@ -245,7 +245,7 @@ def train(opt, show_number = 2, amp=False):
                 with torch.no_grad():
                     valid_loss, current_accuracy, current_norm_ED, preds, confidence_score, labels,\
                     infer_time, length_of_data, cer = validation(model, criterion, valid_loader, converter, opt, device)
-                    wandb.log({"eval/textline_accuracy": current_accuracy, "eval/cer": cer})
+                    wandb.log({"val/textline_accuracy": current_accuracy, "val/cer": cer})
                 model.train()
 
                 # training loss and validation loss
