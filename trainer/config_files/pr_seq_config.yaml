@@ -34,7 +34,7 @@ data_filtering_off: True
 vertical: False
 # Model Architecture
 Transformation: 'None'
-FeatureExtraction: 'ResNet'
+FeatureExtraction: 'VGG'
 SequenceModeling: 'BiLSTM'
 Prediction: 'CTC'
 num_fiducial: 20
