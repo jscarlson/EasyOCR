@@ -4,6 +4,7 @@ lang_char: '/srv/ocr/github_repos/ocr-as-retrieval/full_charset_jp.txt'
 experiment_name: 'pr_init'
 train_data: 'easyocr_data/pr_train'
 valid_data: 'easyocr_data/pr_val'
+test_data: 'easyocr_data/pr_test'
 manualSeed: 1111
 workers: 6
 batch_size: 64 #32

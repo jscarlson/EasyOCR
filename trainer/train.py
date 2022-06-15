@@ -42,12 +42,21 @@ def train(opt, show_number = 2, amp=False):
 
     log = open(f'./saved_models/{opt.experiment_name}/log_dataset.txt', 'a', encoding="utf8")
     AlignCollate_valid = AlignCollate(imgH=opt.imgH, imgW=opt.imgW, keep_ratio_with_pad=opt.PAD, contrast_adjust=opt.contrast_adjust)
+
     valid_dataset, valid_dataset_log = hierarchical_dataset(root=opt.valid_data, opt=opt)
     valid_loader = torch.utils.data.DataLoader(
         valid_dataset, batch_size=min(32, opt.batch_size),
         shuffle=True,  # 'True' to check training progress with validation function.
         num_workers=int(opt.workers), prefetch_factor=512,
         collate_fn=AlignCollate_valid, pin_memory=True)
+
+    test_dataset, test_dataset_log = hierarchical_dataset(root=opt.test_data, opt=opt)
+    test_loader = torch.utils.data.DataLoader(
+        test_dataset, batch_size=min(32, opt.batch_size),
+        shuffle=True,  # 'True' to check training progress with validation function.
+        num_workers=int(opt.workers), prefetch_factor=512,
+        collate_fn=AlignCollate_valid, pin_memory=True)
+
     log.write(valid_dataset_log)
     print('-' * 80)
     log.write('-' * 80 + '\n')
@@ -251,7 +260,7 @@ def train(opt, show_number = 2, amp=False):
                     torch.save(model.state_dict(), f'./saved_models/{opt.experiment_name}/best_accuracy.pth')
                 if cer < best_cer:
                     best_cer = cer
-                    torch.save(model.state_dict(), f'./saved_models/{opt.experiment_name}/best_cer_ED.pth')
+                    torch.save(model.state_dict(), f'./saved_models/{opt.experiment_name}/best_cer.pth')
                 best_model_log = f'{"Best_accuracy":17s}: {best_accuracy}, {"Best_norm_ED":17s}: {best_norm_ED}'
 
                 loss_model_log = f'{loss_log}\n{current_model_log}\n{best_model_log}'
@@ -285,5 +294,11 @@ def train(opt, show_number = 2, amp=False):
 
         if i == opt.num_iter:
             print('end the training')
+            model.load_state_dict(torch.load(f'./saved_models/{opt.experiment_name}/best_cer.pth')) 
+            model.eval()
+            with torch.no_grad():
+                test_loss, current_accuracy, current_norm_ED, preds, confidence_score, labels,\
+                    infer_time, length_of_data, cer = validation(model, criterion, test_loader, converter, opt, device)
+                wandb.log({"test/textline_accuracy": current_accuracy, "test/cer": cer})
             sys.exit()
         i += 1
