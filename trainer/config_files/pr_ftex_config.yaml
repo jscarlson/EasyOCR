@@ -1,6 +1,6 @@
 number: 'None'
 symbol: 'None'
-lang_char: '/srv/ocr/github_repos/ocr-as-retrieval/full_charset_jp.txt'
+lang_char: '/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/github_repos/ocr-as-retrieval/full_charset_jp.txt'
 experiment_name: 'pr_ftex'
 train_data: 'easyocr_data/pr_train'
 valid_data: 'easyocr_data/pr_val'
