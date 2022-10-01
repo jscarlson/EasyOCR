@@ -29,5 +29,5 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     opt = get_config(args.config_file)
-    wandb.init(project="EasyOCR", name=opt.experiment_name)
+    wandb.init(project="EasyOCR_v2", name=opt.experiment_name)
     train(opt, amp=False)
