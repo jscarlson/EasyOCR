@@ -45,14 +45,14 @@ def train(opt, show_number = 2, amp=False):
 
     valid_dataset, valid_dataset_log = hierarchical_dataset(root=opt.valid_data, opt=opt)
     valid_loader = torch.utils.data.DataLoader(
-        valid_dataset, batch_size=min(32, opt.batch_size),
+        valid_dataset, batch_size=1,
         shuffle=True,  # 'True' to check training progress with validation function.
         num_workers=int(opt.workers), prefetch_factor=512,
         collate_fn=AlignCollate_valid, pin_memory=True)
 
     test_dataset, test_dataset_log = hierarchical_dataset(root=opt.test_data, opt=opt)
     test_loader = torch.utils.data.DataLoader(
-        test_dataset, batch_size=min(1, opt.batch_size),
+        test_dataset, batch_size=1,
         shuffle=True,  # 'True' to check training progress with validation function.
         num_workers=int(opt.workers), prefetch_factor=512,
         collate_fn=AlignCollate_valid, pin_memory=True)

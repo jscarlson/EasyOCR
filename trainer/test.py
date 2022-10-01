@@ -28,7 +28,6 @@ def validation(model, criterion, evaluation_loader, converter, opt, device):
 
     for image_tensors, labels in tqdm(evaluation_loader):
         batch_size = image_tensors.size(0)
-        print("batch size", batch_size)
         length_of_data = length_of_data + batch_size
         image = image_tensors.to(device)
         # For max length prediction
