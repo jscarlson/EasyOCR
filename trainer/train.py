@@ -30,7 +30,7 @@ def count_parameters(model):
     print(f"Total Trainable Params: {total_params}")
     return total_params
 
-def train(opt, show_number = 1, amp=False):
+def train(opt, show_number = 0, amp=False):
     """ dataset preparation """
     if not opt.data_filtering_off:
         print('Filtering the images containing characters which are not in opt.character')
@@ -273,7 +273,7 @@ def train(opt, show_number = 1, amp=False):
                 head = f'{"Ground Truth":25s} | {"Prediction":25s} | Confidence Score & T/F'
                 predicted_result_log = f'{dashed_line}\n{head}\n{dashed_line}\n'
                 
-                #show_number = min(show_number, len(labels))
+                # show_number = min(show_number, len(labels))
                 
                 start = random.randint(0,len(labels) - show_number )    
                 for gt, pred, confidence in zip(labels[start:start+show_number], preds[start:start+show_number], confidence_score[start:start+show_number]):
