@@ -15,7 +15,7 @@ from dataset import hierarchical_dataset, AlignCollate
 from model import Model
 from tqdm import tqdm
 
-def validation(model, criterion, evaluation_dataset, converter, opt, device):
+def validation(model, criterion, evaluation_loader, converter, opt, device):
     """ validation or evaluation """
     n_correct = 0
     c_correct = 0
@@ -25,10 +25,6 @@ def validation(model, criterion, evaluation_dataset, converter, opt, device):
     length_of_data = 0
     infer_time = 0
     valid_loss_avg = Averager()
-
-    print(evaluation_dataset)
-
-    exit(1)
 
     for image_tensors, labels in tqdm(evaluation_loader):
         batch_size = image_tensors.size(0)
