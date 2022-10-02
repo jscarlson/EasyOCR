@@ -53,8 +53,9 @@ def train(opt, show_number = 1, amp=False):
     test_dataset, test_dataset_log = hierarchical_dataset(root=opt.test_data, opt=opt)
     test_loader = torch.utils.data.DataLoader(
         test_dataset, batch_size=1,
-        shuffle=False,  # 'True' to check training progress with validation function.
-    )
+        shuffle=True,  # 'True' to check training progress with validation function.
+        num_workers=int(opt.workers), prefetch_factor=512,
+        collate_fn=AlignCollate_valid, pin_memory=True)
 
     log.write(valid_dataset_log)
     print('-' * 80)
