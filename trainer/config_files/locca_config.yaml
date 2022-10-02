@@ -43,5 +43,5 @@ output_channel: 256
 hidden_size: 256
 decode: 'greedy'
 new_prediction: True
-freeze_FeatureFxtraction: True
-freeze_SequenceModeling: True
+freeze_FeatureFxtraction: False
+freeze_SequenceModeling: False
