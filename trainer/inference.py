@@ -33,7 +33,7 @@ def string_cleaner(s):
     )
 
 
-def inference(img_name, custom_network, lang="en"):
+def inference(img_name, custom_network=None, lang="en"):
     reader = easyocr.Reader([lang])
     bounds = reader.readtext(img_name)
     return pd.DataFrame(bounds).iloc[: , 1:]
