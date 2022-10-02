@@ -30,7 +30,7 @@ def count_parameters(model):
     print(f"Total Trainable Params: {total_params}")
     return total_params
 
-def train(opt, show_number = 2, amp=False):
+def train(opt, show_number = 1, amp=False):
     """ dataset preparation """
     if not opt.data_filtering_off:
         print('Filtering the images containing characters which are not in opt.character')
@@ -45,7 +45,7 @@ def train(opt, show_number = 2, amp=False):
 
     valid_dataset, valid_dataset_log = hierarchical_dataset(root=opt.valid_data, opt=opt)
     valid_loader = torch.utils.data.DataLoader(
-        valid_dataset, batch_size=32,
+        valid_dataset, batch_size=1,
         shuffle=True,  # 'True' to check training progress with validation function.
         num_workers=int(opt.workers), prefetch_factor=512,
         collate_fn=AlignCollate_valid, pin_memory=True)
