@@ -3,4 +3,6 @@ network_params:
   output_channel: 256
   hidden_size: 256
 imgH: 64
+lang_list:
+         - 'en'
 character_list: '/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/github_repos/ocr-as-retrieval/full_charset_en.txt'
