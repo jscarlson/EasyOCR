@@ -104,6 +104,8 @@ class Reader(object):
         separator_list = {}
 
         if recog_network in ['standard'] + [model for model in recognition_models['gen1']] + [model for model in recognition_models['gen2']]:
+            print("hereee")
+            print(recog_network)
             if recog_network in [model for model in recognition_models['gen1']]:
                 model = recognition_models['gen1'][recog_network]
                 recog_network = 'generation1'
@@ -200,7 +202,6 @@ class Reader(object):
             self.setLanguageList(lang_list, model)
 
         else: # user-defined model
-            print("hereee!")
             with open(os.path.join(self.user_network_directory, recog_network+ '.yaml'), encoding='utf8') as file:
                 recog_config = yaml.load(file, Loader=yaml.FullLoader)
             with open(recog_config["character_list"]) as f:
