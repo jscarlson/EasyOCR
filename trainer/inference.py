@@ -118,6 +118,8 @@ if __name__ == '__main__':
             output = inference(path, reader=reader)
             inference_results[path] = output
 
+    print(inference_results)
+
     gts = []
     for x in coco["images"]:
         filename = x["file_name"]
