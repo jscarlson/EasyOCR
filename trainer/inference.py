@@ -35,7 +35,10 @@ def string_cleaner(s):
 
 def inference(img_name, reader):
     bounds = reader.readtext(img_name)
-    return bounds[0][-2]
+    try:
+        return bounds[0][-2]
+    except IndexError:
+        return ""
 
 
 def textline_evaluation(
