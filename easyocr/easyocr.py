@@ -204,6 +204,8 @@ class Reader(object):
                 recog_config = yaml.load(file, Loader=yaml.FullLoader)
             with open(recog_config["character_list"]) as f:
                 chars_from_file = "".join(chr(int(i)) for i in f.read().split())
+                if len(chars_from_file) < 1000:
+                    chars_from_file += " "
                 recog_config["character_list"] = chars_from_file
             imgH = recog_config['imgH']
             available_lang = recog_config['lang_list']
@@ -235,8 +237,6 @@ class Reader(object):
                     }
             else:
                 network_params = recog_config['network_params']
-            print("got here!")
-            print(self.character[:100])
             self.recognizer, self.converter = get_recognizer(recog_network, network_params,\
                                                          self.character, separator_list,\
                                                          dict_list, model_path, device = self.device, quantize=quantize)
