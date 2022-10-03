@@ -33,8 +33,12 @@ def string_cleaner(s):
     )
 
 
-def inference(img_name, custom_network=None, lang="en"):
-    reader = easyocr.Reader([lang])
+def inference(img_name, lang, dataset_name):
+    reader = easyocr.Reader([lang], gpu=True,
+        recog_network=dataset_name,
+        model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
+        user_network_director="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
+    )
     bounds = reader.readtext(img_name)
     return pd.DataFrame(bounds).iloc[: , 1:]
 
@@ -94,6 +98,10 @@ if __name__ == '__main__':
         help="Path to COCO JSON file with training data")
     parser.add_argument("--image_dir", type=str, required=True,
         help="Path to relevant image directory")
+    parser.add_argument("--lang", type=str, required=True,
+        help="Path to relevant image directory")
+    parser.add_argument("--dataset_name", type=str, required=True,
+        help="Path to relevant image directory")
     args = parser.parse_args()
 
     with open(args.coco_json) as f:
@@ -101,10 +109,11 @@ if __name__ == '__main__':
     coco_images = [os.path.join(args.image_dir, x["file_name"]) for x in coco["images"]]
 
     inference_results = {}
-
     with torch.no_grad():
         for path in tqdm(coco_images):
-            output = inference(path)
+            output = inference(path, lang=args.lang, dataset_name=args.dataset_name)
+            print(output)
+            exit(1)
             inference_results[path] = output
 
     gts = []
@@ -112,7 +121,6 @@ if __name__ == '__main__':
         filename = x["file_name"]
         gt_chars = x["text"]
         gts.append((filename, gt_chars))
-
     gt_pred_pairs = gt_collect(inference_results, gts)
 
     acc, norm_ED = textline_evaluation(gt_pred_pairs, print_incorrect=True, 
