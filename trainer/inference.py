@@ -40,7 +40,7 @@ def inference(img_name, lang, dataset_name):
         user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
     )
     bounds = reader.readtext(img_name)
-    return bounds
+    return bounds[0][-2]
 
 
 def textline_evaluation(
