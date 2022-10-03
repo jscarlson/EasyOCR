@@ -37,7 +37,7 @@ def inference(img_name, lang, dataset_name):
     reader = easyocr.Reader([lang], gpu=True,
         recog_network=dataset_name,
         model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
-        user_network_director="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
+        user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
     )
     bounds = reader.readtext(img_name)
     return pd.DataFrame(bounds).iloc[: , 1:]
