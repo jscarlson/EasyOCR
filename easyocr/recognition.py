@@ -178,6 +178,8 @@ def get_recognizer(recog_network, network_params, character,\
             except:
                 pass
     else:
+        print("got here!")
+        print(character[:100])
         model = torch.nn.DataParallel(model).to(device)
         model.load_state_dict(torch.load(model_path, map_location=device))
 
