@@ -112,8 +112,6 @@ if __name__ == '__main__':
     with torch.no_grad():
         for path in tqdm(coco_images):
             output = inference(path, lang=args.lang, dataset_name=args.dataset_name)
-            print(output)
-            exit(1)
             inference_results[path] = output
 
     gts = []
