@@ -33,12 +33,7 @@ def string_cleaner(s):
     )
 
 
-def inference(img_name, lang, dataset_name):
-    reader = easyocr.Reader([lang], gpu=True,
-        recog_network=dataset_name,
-        model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
-        user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
-    )
+def inference(img_name, reader):
     bounds = reader.readtext(img_name)
     return bounds[0][-2]
 
@@ -107,6 +102,12 @@ if __name__ == '__main__':
     with open(args.coco_json) as f:
             coco = json.load(f)
     coco_images = [os.path.join(args.image_dir, x["file_name"]) for x in coco["images"]]
+
+    reader = easyocr.Reader([args.lang], gpu=True,
+        recog_network=args.dataset_name,
+        model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
+        user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
+    )
 
     inference_results = {}
     with torch.no_grad():
