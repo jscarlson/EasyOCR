@@ -116,7 +116,7 @@ if __name__ == '__main__':
     with torch.no_grad():
         for path in tqdm(coco_images):
             output = inference(path, reader=reader)
-            inference_results[path] = output
+            inference_results[os.path.basename(path)] = output
 
     print(inference_results)
 
