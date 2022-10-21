@@ -125,7 +125,7 @@ if __name__ == '__main__':
         gts.append((filename, gt_chars))
     gt_pred_pairs = gt_collect(inference_results, gts)
 
-    acc, norm_ED = textline_evaluation(gt_pred_pairs, print_incorrect=True, 
+    acc, norm_ED = textline_evaluation(gt_pred_pairs, print_incorrect=False, 
         no_spaces_in_eval=False, norm_edit_distance=False, uncased=True)
 
     print(f"EasyOCR | Textline accuracy = {acc} | CER = {norm_ED}")
