@@ -109,8 +109,7 @@ if __name__ == '__main__':
     reader = easyocr.Reader([args.lang], gpu=True,
         recog_network=args.dataset_name,
         model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
-        user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
-        quantize=False,
+        user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks"
     )
 
     inference_results = {}
@@ -126,7 +125,7 @@ if __name__ == '__main__':
         gts.append((filename, gt_chars))
     gt_pred_pairs = gt_collect(inference_results, gts)
 
-    acc, norm_ED = textline_evaluation(gt_pred_pairs, print_incorrect=False, 
+    acc, norm_ED = textline_evaluation(gt_pred_pairs, print_incorrect=True, 
         no_spaces_in_eval=False, norm_edit_distance=False, uncased=True)
 
     print(f"EasyOCR | Textline accuracy = {acc} | CER = {norm_ED}")
