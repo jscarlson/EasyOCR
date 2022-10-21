@@ -36,8 +36,8 @@ def string_cleaner(s):
 
 
 def inference(img_name, reader):
-    img, img_cv_grey = reformat_input(img_name)
-    bounds = reader.recognize(img_cv_grey)
+    # img, img_cv_grey = reformat_input(img_name)
+    bounds = reader.recognize(img_name)
     try:
         return bounds[0][-2]
     except IndexError:
