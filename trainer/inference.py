@@ -10,8 +10,6 @@ from nltk.metrics.distance import edit_distance
 import os
 import json
 
-from easyocr.utils import reformat_input
-
 
 def gt_collect(results, gts):
     gt_pred_pairs = []
@@ -36,7 +34,6 @@ def string_cleaner(s):
 
 
 def inference(img_name, reader):
-    # img, img_cv_grey = reformat_input(img_name)
     bounds = reader.recognize(img_name)
     try:
         return bounds[0][-2]
