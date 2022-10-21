@@ -110,7 +110,7 @@ if __name__ == '__main__':
         recog_network=args.dataset_name,
         model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
         user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
-        detector=False,
+        quantize=False,
     )
 
     inference_results = {}
