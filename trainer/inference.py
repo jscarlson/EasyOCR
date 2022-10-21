@@ -107,9 +107,10 @@ if __name__ == '__main__':
     coco_images = [os.path.join(args.image_dir, x["file_name"]) for x in coco["images"]]
 
     reader = easyocr.Reader([args.lang], gpu=True,
-        #recog_network=args.dataset_name,
-        #model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
-        #user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
+        recog_network=args.dataset_name,
+        model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
+        user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks",
+        detector=False,
     )
 
     inference_results = {}
