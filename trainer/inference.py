@@ -10,6 +10,8 @@ from nltk.metrics.distance import edit_distance
 import os
 import json
 
+from .utils import reformat_input
+
 
 def gt_collect(results, gts):
     gt_pred_pairs = []
@@ -34,7 +36,8 @@ def string_cleaner(s):
 
 
 def inference(img_name, reader):
-    bounds = reader.readtext(img_name)
+    img, img_cv_grey = reformat_input(img_name)
+    bounds = reader.recognize(img_cv_grey)
     try:
         return bounds[0][-2]
     except IndexError:
