@@ -10,7 +10,7 @@ from nltk.metrics.distance import edit_distance
 import os
 import json
 
-from ..easyocr.utils import reformat_input
+from easyocr.utils import reformat_input
 
 
 def gt_collect(results, gts):
