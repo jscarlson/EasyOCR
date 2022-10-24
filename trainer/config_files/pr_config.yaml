@@ -1,10 +1,10 @@
 number: 'None'
 symbol: 'None'
 lang_char: '/mnt/122a7683-fa4b-45dd-9f13-b18cc4f4a187/github_repos/ocr-as-retrieval/full_charset_jp.txt'
-experiment_name: 'pr_701515_init'
-train_data: 'easyocr_data/pr_train'
-valid_data: 'easyocr_data/pr_val'
-test_data: 'easyocr_data/pr_test'
+experiment_name: 'pr_204040_init'
+train_data: 'easyocr_data/pr_204040_train'
+valid_data: 'easyocr_data/pr_204040_val'
+test_data: 'easyocr_data/pr_204040_test'
 manualSeed: 1111
 workers: 6
 batch_size: 64 #32
@@ -19,7 +19,7 @@ rho: 0.95
 eps: 0.00000001
 grad_clip: 5
 #Data processing
-select_data: 'pr_train' # this is dataset folder in train_data
+select_data: 'pr_204040_train' # this is dataset folder in train_data
 batch_ratio: '1' 
 total_data_usage_ratio: 1.0
 batch_max_length: 64 
