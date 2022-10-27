@@ -38,7 +38,12 @@ def train(opt, show_number = 1, amp=False):
 
     opt.select_data = opt.select_data.split('-')
     opt.batch_ratio = opt.batch_ratio.split('-')
-    train_dataset = Batch_Balanced_Dataset(opt)
+    try: 
+        train_dataset = Batch_Balanced_Dataset(opt)
+        do_train = True
+    except ValueError:
+        train_dataset = None
+        do_train = False
 
     log = open(f'./saved_models/{opt.experiment_name}/log_dataset.txt', 'a', encoding="utf8")
     AlignCollate_valid = AlignCollate(imgH=opt.imgH, imgW=opt.imgW, keep_ratio_with_pad=opt.PAD, contrast_adjust=opt.contrast_adjust)
@@ -184,8 +189,11 @@ def train(opt, show_number = 1, amp=False):
     t1= time.time()
 
     print("Begin training!")
+
+    if not do_train:
+        torch.save(model.state_dict(), f'./saved_models/{opt.experiment_name}/best_cer.pth')
         
-    while(True):
+    while(do_train):
         # train part
         optimizer.zero_grad(set_to_none=True)
         
