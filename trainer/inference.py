@@ -97,20 +97,25 @@ if __name__ == '__main__':
     parser.add_argument("--image_dir", type=str, required=True,
         help="Path to relevant image directory")
     parser.add_argument("--lang", type=str, required=True,
-        help="Path to relevant image directory")
+        help="")
     parser.add_argument("--dataset_name", type=str, required=True,
-        help="Path to relevant image directory")
+        help="")
+    parser.add_argument("--zero_shot", type=bool, action="store_true", default=False,
+        help="")
     args = parser.parse_args()
 
     with open(args.coco_json) as f:
             coco = json.load(f)
     coco_images = [os.path.join(args.image_dir, x["file_name"]) for x in coco["images"]]
 
-    reader = easyocr.Reader([args.lang], gpu=True,
-        recog_network=args.dataset_name,
-        model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
-        user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks"
-    )
+    if not args.zero_shot:
+        reader = easyocr.Reader([args.lang], gpu=True,
+            recog_network=args.dataset_name,
+            model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
+            user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks"
+        )
+    else:
+        reader = easyocr.Reader([args.lang], gpu=True)
 
     inference_results = {}
     with torch.no_grad():
