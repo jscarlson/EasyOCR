@@ -100,7 +100,7 @@ if __name__ == '__main__':
         help="")
     parser.add_argument("--dataset_name", type=str, required=True,
         help="")
-    parser.add_argument("--zero_shot", type=bool, action="store_true", default=False,
+    parser.add_argument("--zero_shot", action="store_true", default=False,
         help="")
     args = parser.parse_args()
 
