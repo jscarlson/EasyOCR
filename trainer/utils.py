@@ -257,6 +257,7 @@ class CTCLabelConverter(object):
             print("Custom key error written by Jake!")
             print(e)
             print(list(text))
+            print([ord(x) for x in list(text)])
             exit(1)
 
         return (torch.IntTensor(text), torch.IntTensor(length))
