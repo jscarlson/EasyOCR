@@ -256,8 +256,8 @@ class CTCLabelConverter(object):
         except KeyError as e:
             print("Custom key error written by Jake!")
             print(e)
+            print(ord(e))
             print(list(text))
-            print([ord(x) for x in list(text)])
             exit(1)
 
         return (torch.IntTensor(text), torch.IntTensor(length))
