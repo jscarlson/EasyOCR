@@ -17,8 +17,7 @@ def get_config(file_path):
     if os.path.isfile(opt.lang_char):
         with open(opt.lang_char) as f:
             opt.character = "".join(chr(int(i)) for i in f.read().split())
-            if "en" in opt.lang_char:
-                opt.character += " "
+            opt.character += " "
     else:
         opt.character = opt.number + opt.symbol + opt.lang_char
     os.makedirs(f'./saved_models/{opt.experiment_name}', exist_ok=True)
