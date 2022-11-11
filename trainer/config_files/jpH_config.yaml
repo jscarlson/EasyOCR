@@ -10,7 +10,7 @@ workers: 6
 batch_size: 128 #32
 num_iter: 100_000 # 300000
 valInterval: 10_000 # 20000
-saved_model:
+saved_model: ''
 FT: True
 optim: False # default is Adadelta
 lr: 1.
