@@ -256,7 +256,7 @@ class CTCLabelConverter(object):
         except KeyError as e:
             print("Custom key error written by Jake!")
             print(e)
-            print(str(e))
+            print(ord(str(e)[1]))
             print(list(text))
             exit(1)
 
