@@ -111,8 +111,8 @@ if __name__ == '__main__':
     if not args.zero_shot:
         reader = easyocr.Reader([args.lang], gpu=True,
             recog_network=args.dataset_name,
-            model_storage_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_models",
-            user_network_directory="/srv/ocr/github_repos/EasyOCR/trainer/custom_networks"
+            model_storage_directory="/mnt/data02/github_repos/EasyOCR/trainer/custom_models",
+            user_network_directory="/mnt/data02/github_repos/EasyOCR/trainer/custom_networks"
         )
     else:
         reader = easyocr.Reader([args.lang], gpu=True)
