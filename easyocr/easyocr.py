@@ -205,6 +205,7 @@ class Reader(object):
             with open(recog_config["character_list"]) as f:
                 chars_from_file = "".join(chr(int(i)) for i in f.read().split())
                 chars_from_file = " " + chars_from_file
+                print(chars_from_file)
                 recog_config["character_list"] = chars_from_file
             imgH = recog_config['imgH']
             available_lang = recog_config['lang_list']
