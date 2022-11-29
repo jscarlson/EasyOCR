@@ -205,13 +205,13 @@ class Reader(object):
             with open(recog_config["character_list"]) as f:
                 chars_from_file = "".join(chr(int(i)) for i in f.read().split())
                 chars_from_file = " " + chars_from_file
-                print(chars_from_file)
                 recog_config["character_list"] = chars_from_file
             imgH = recog_config['imgH']
             available_lang = recog_config['lang_list']
             self.setModelLanguage(recog_network, lang_list, available_lang, available_lang)
             #char_file = os.path.join(self.user_network_directory, recog_network+ '.txt')
             self.character = recog_config['character_list']
+            print(self.character)
             model_file = recog_network+ '.pth'
             model_path = os.path.join(self.model_storage_directory, model_file)
             self.setLanguageList(lang_list, None)
