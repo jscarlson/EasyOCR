@@ -260,7 +260,7 @@ class CTCLabelConverter(object):
             print(list(text))
             length = [len(s) for s in text]
             text = ''.join(text)
-            text = [self.dict.get(char, len(dict)) for char in text]
+            text = [self.dict.get(char, len(self.dict)) for char in text]
 
         return (torch.IntTensor(text), torch.IntTensor(length))
 
