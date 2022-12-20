@@ -7,7 +7,7 @@ valid_data: 'easyocr_data/pr_val'
 test_data: 'easyocr_data/pr_test'
 manualSeed: 1111
 workers: 6
-batch_size: 32 #32
+batch_size: 64 #32
 num_iter: 30000 # 300000
 valInterval: 2000 # 20000
 saved_model: './japanese_g2.pth'
