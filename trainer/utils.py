@@ -254,11 +254,13 @@ class CTCLabelConverter(object):
             text = ''.join(text)
             text = [self.dict[char] for char in text]
         except KeyError as e:
-            print("Custom key error written by Jake!")
+            print("*** Custom key error written by Jake! ***")
             print(e)
             print(ord(str(e)[1]))
             print(list(text))
-            exit(1)
+            length = [len(s) for s in text]
+            text = ''.join(text)
+            text = [self.dict.get(char, len(dict)) for char in text]
 
         return (torch.IntTensor(text), torch.IntTensor(length))
 
