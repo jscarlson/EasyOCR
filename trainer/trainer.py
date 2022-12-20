@@ -6,6 +6,7 @@ from utils import AttrDict
 import pandas as pd
 import argparse
 import wandb
+import easyocr
 
 cudnn.benchmark = True
 cudnn.deterministic = False
@@ -18,6 +19,9 @@ def get_config(file_path):
         with open(opt.lang_char) as f:
             opt.character = "".join(chr(int(i)) for i in f.read().split())
             opt.character += " "
+    elif opt.lang_char in ["ja", "en"]:
+        reader = easyocr.Reader([args.lang], gpu=True)
+        opt.character = reader.character
     else:
         opt.character = opt.number + opt.symbol + opt.lang_char
     os.makedirs(f'./saved_models/{opt.experiment_name}', exist_ok=True)
