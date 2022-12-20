@@ -207,7 +207,7 @@ class Reader(object):
                     chars_from_file = "".join(chr(int(i)) for i in f.read().split())
                     recog_config["character_list"] = chars_from_file + " "
             else:
-                recog_config["character_list"] = self.character
+                recog_config["character_list"] = self.auto_detect_char(lang_list)
 
             imgH = recog_config['imgH']
             available_lang = recog_config['lang_list']
@@ -500,3 +500,67 @@ class Reader(object):
                                             filter_ths, y_ths, x_ths, False, output_format))
 
         return result_agg
+
+    def auto_detect_char(self, lang_list):
+        unknown_lang = set(lang_list) - set(all_lang_list)
+        if unknown_lang != set():
+            raise ValueError(unknown_lang, 'is not supported')
+        # choose recognition model
+        if lang_list == ['en']:
+            self.setModelLanguage('english', lang_list, ['en'], '["en"]')
+            model = recognition_models['gen2']['english_g2']
+            recog_network = 'generation2'
+        elif 'th' in lang_list:
+            self.setModelLanguage('thai', lang_list, ['th','en'], '["th","en"]')
+            model = recognition_models['gen1']['thai_g1']
+            recog_network = 'generation1'
+        elif 'ch_tra' in lang_list:
+            self.setModelLanguage('chinese_tra', lang_list, ['ch_tra','en'], '["ch_tra","en"]')
+            model = recognition_models['gen1']['zh_tra_g1']
+            recog_network = 'generation1'
+        elif 'ch_sim' in lang_list:
+            self.setModelLanguage('chinese_sim', lang_list, ['ch_sim','en'], '["ch_sim","en"]')
+            model = recognition_models['gen2']['zh_sim_g2']
+            recog_network = 'generation2'
+        elif 'ja' in lang_list:
+            self.setModelLanguage('japanese', lang_list, ['ja','en'], '["ja","en"]')
+            model = recognition_models['gen2']['japanese_g2']
+            recog_network = 'generation2'
+        elif 'ko' in lang_list:
+            self.setModelLanguage('korean', lang_list, ['ko','en'], '["ko","en"]')
+            model = recognition_models['gen2']['korean_g2']
+            recog_network = 'generation2'
+        elif 'ta' in lang_list:
+            self.setModelLanguage('tamil', lang_list, ['ta','en'], '["ta","en"]')
+            model = recognition_models['gen1']['tamil_g1']
+            recog_network = 'generation1'
+        elif 'te' in lang_list:
+            self.setModelLanguage('telugu', lang_list, ['te','en'], '["te","en"]')
+            model = recognition_models['gen2']['telugu_g2']
+            recog_network = 'generation2'
+        elif 'kn' in lang_list:
+            self.setModelLanguage('kannada', lang_list, ['kn','en'], '["kn","en"]')
+            model = recognition_models['gen2']['kannada_g2']
+            recog_network = 'generation2'
+        elif set(lang_list) & set(bengali_lang_list):
+            self.setModelLanguage('bengali', lang_list, bengali_lang_list+['en'], '["bn","as","en"]')
+            model = recognition_models['gen1']['bengali_g1']
+            recog_network = 'generation1'
+        elif set(lang_list) & set(arabic_lang_list):
+            self.setModelLanguage('arabic', lang_list, arabic_lang_list+['en'], '["ar","fa","ur","ug","en"]')
+            model = recognition_models['gen1']['arabic_g1']
+            recog_network = 'generation1'
+        elif set(lang_list) & set(devanagari_lang_list):
+            self.setModelLanguage('devanagari', lang_list, devanagari_lang_list+['en'], '["hi","mr","ne","en"]')
+            model = recognition_models['gen1']['devanagari_g1']
+            recog_network = 'generation1'
+        elif set(lang_list) & set(cyrillic_lang_list):
+            self.setModelLanguage('cyrillic', lang_list, cyrillic_lang_list+['en'],
+                                    '["ru","rs_cyrillic","be","bg","uk","mn","en"]')
+            model = recognition_models['gen1']['cyrillic_g1']
+            recog_network = 'generation1'
+        else:
+            self.model_lang = 'latin'
+            model = recognition_models['gen2']['latin_g2']
+            recog_network = 'generation2'
+        return model['characters']
