@@ -252,7 +252,8 @@ class CTCLabelConverter(object):
         try:
             length = [len(s) for s in text]
             text = ''.join(text)
-            text = [self.dict.get(char, len(self.dict)) for char in text]
+            text = [self.dict.get(char, len(self.dict)) for char in text] # effective replacement with unk token
+        # deprecated
         except KeyError as e:
             print("*** Custom key error written by Jake! ***")
             print(e)
