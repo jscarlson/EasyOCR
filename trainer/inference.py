@@ -108,15 +108,15 @@ if __name__ == '__main__':
             coco = json.load(f)
     coco_images = [os.path.join(args.image_dir, x["file_name"]) for x in coco["images"]]
 
-    if not args.zero_shot:
+    if args.zero_shot:
+        reader = easyocr.Reader([args.lang], gpu=True)
+    else:
         reader = easyocr.Reader([args.lang], gpu=True,
             recog_network=args.dataset_name,
             model_storage_directory="/mnt/data02/github_repos/EasyOCR/trainer/custom_models",
             user_network_directory="/mnt/data02/github_repos/EasyOCR/trainer/custom_networks"
         )
-    else:
-        reader = easyocr.Reader([args.lang], gpu=True)
-
+        
     inference_results = {}
     with torch.no_grad():
         for path in tqdm(coco_images):
