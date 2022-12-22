@@ -106,6 +106,8 @@ if __name__ == '__main__':
         help="")
     parser.add_argument("--zero_shot", action="store_true", default=False,
         help="")
+    parser.add_argument("--gpu", action="store_true", default=False,
+        help="")
     args = parser.parse_args()
 
     with open(args.coco_json) as f:
@@ -113,9 +115,9 @@ if __name__ == '__main__':
     coco_images = [os.path.join(args.image_dir, x["file_name"]) for x in coco["images"]]
 
     if args.zero_shot:
-        reader = easyocr.Reader([args.lang], gpu=True)
+        reader = easyocr.Reader([args.lang], gpu=args.gpu)
     else:
-        reader = easyocr.Reader([args.lang], gpu=True,
+        reader = easyocr.Reader([args.lang], gpu=args.gpu,
             recog_network=args.dataset_name,
             model_storage_directory=args.custom_models_dir,
             user_network_directory=args.custom_networks_dir
