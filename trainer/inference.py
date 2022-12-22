@@ -96,6 +96,10 @@ if __name__ == '__main__':
         help="Path to COCO JSON file with training data")
     parser.add_argument("--image_dir", type=str, required=True,
         help="Path to relevant image directory")
+    parser.add_argument("--custom_models_dir", type=str, required=True,
+        help="")
+    parser.add_argument("--custom_networks_dir", type=str, required=True,
+        help="")
     parser.add_argument("--lang", type=str, required=True,
         help="")
     parser.add_argument("--dataset_name", type=str, required=True,
@@ -113,8 +117,8 @@ if __name__ == '__main__':
     else:
         reader = easyocr.Reader([args.lang], gpu=True,
             recog_network=args.dataset_name,
-            model_storage_directory="/mnt/data02/github_repos/EasyOCR/trainer/custom_models",
-            user_network_directory="/mnt/data02/github_repos/EasyOCR/trainer/custom_networks"
+            model_storage_directory=args.custom_models_dir,
+            user_network_directory=args.custom_networks_dir
         )
         
     inference_results = {}
