@@ -5,4 +5,4 @@ network_params:
 imgH: 64
 lang_list:
          - 'en'
-character_list: # '/mnt/data02/github_repos/ocr-as-retrieval/full_charset_en.txt'
+character_list: '/mnt/data02/github_repos/ocr-as-retrieval/full_charset_en.txt'
