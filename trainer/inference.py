@@ -120,7 +120,7 @@ if __name__ == '__main__':
         with open(args.coco_json) as f:
             coco = json.load(f)
         if args.silver:
-            coco_silver_file_names = set([x["file_name"] for x in coco["images"] if x.startswith("PAIRED") and ("sn-" in x)])
+            coco_silver_file_names = set([x["file_name"] for x in coco["images"] if x["file_name"].startswith("PAIRED") and ("sn-" in x["file_name"])])
             coco_images = [fp for fp in glob(f'{args.image_dir}/**/*', recursive=True) if (fp.endswith('.jpg') or fp.endswith('.png'))]
             coco_images = [fp for fp in coco_images if fp.split("/")[-1] in coco_silver_file_names]
             print(f"There are {len(coco_images)} silver images.")
