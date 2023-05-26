@@ -160,7 +160,7 @@ if __name__ == '__main__':
         silver_results = []
         inference_results = {}
         with torch.no_grad():
-            for path in tqdm(coco_images[:1000]):
+            for path in tqdm(coco_images):
                 output = inference(path, reader=reader)
                 if ord_convert(path.split("/")[-2]) == output:
                     silver_results.append({"file_name": os.path.basename(path)})
