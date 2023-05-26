@@ -147,19 +147,29 @@ if __name__ == '__main__':
             user_network_directory=args.custom_networks_dir
         )
         
-    inference_results = {}
-    with torch.no_grad():
-        for path in tqdm(coco_images[:1000]):
-            output = inference(path, reader=reader)
-            if not args.newspaper_line_output:
-                if args.silver:
-                    inference_results[os.path.basename(path)] = output if ord_convert(path.split("/")[-2]) == output else None
-            else:
-                inference_results[path] = output
+    if not args.silver:
+        inference_results = {}
+        with torch.no_grad():
+            for path in tqdm(coco_images):
+                output = inference(path, reader=reader)
+                if not args.newspaper_line_output:
+                    inference_results[os.path.basename(path)] = output
+                else:
+                    inference_results[path] = output
+    else:
+        silver_results = []
+        inference_results = {}
+        with torch.no_grad():
+            for path in tqdm(coco_images[:1000]):
+                output = inference(path, reader=reader)
+                if ord_convert(path.split("/")[-2]) == output:
+                    silver_results.append({"file_name": os.path.basename(path)})
+        inference_results["images"] = silver_results
 
     if args.save_path:
         with open(args.save_path, 'w') as outfile:
             json.dump(inference_results, outfile, indent=4)
+
     gts = []
     if args.coco_json and not args.silver:
         for x in coco["images"]:
