@@ -149,7 +149,7 @@ if __name__ == '__main__':
         
     inference_results = {}
     with torch.no_grad():
-        for path in tqdm(coco_images):
+        for path in tqdm(coco_images[:1000]):
             output = inference(path, reader=reader)
             if not args.newspaper_line_output:
                 if args.silver:
