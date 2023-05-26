@@ -153,10 +153,7 @@ if __name__ == '__main__':
             output = inference(path, reader=reader)
             if not args.newspaper_line_output:
                 if args.silver:
-                    if ord_convert(path.split("/")[-2]) == output:
-                        inference_results[os.path.basename(path)] = output
-                else:
-                    inference_results[os.path.basename(path)] = output
+                    inference_results[os.path.basename(path)] = output if ord_convert(path.split("/")[-2]) == output else None
             else:
                 inference_results[path] = output
 
