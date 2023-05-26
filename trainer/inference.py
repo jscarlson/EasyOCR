@@ -161,7 +161,7 @@ if __name__ == '__main__':
         with open(args.save_path, 'w') as outfile:
             json.dump(inference_results, outfile, indent=4)
     gts = []
-    if args.coco_json:
+    if args.coco_json and not args.silver:
         for x in coco["images"]:
             filename = x["file_name"]
             gt_chars = x["text"]
