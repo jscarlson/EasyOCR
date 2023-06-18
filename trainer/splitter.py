@@ -71,6 +71,7 @@ if __name__ == "__main__":
             ad_hoc_img_dict = json.load(f)
         ad_hoc_images = [x["file_name"] for x in ad_hoc_img_dict["images"]]
         ad_hoc_texts = [ord_convert(x.split("/")[-2]) for x in ad_hoc_images]
+    
     print(f"Len val ims {len(val_img_basenames)}; len train ims \
         {len(train_img_basenames)}; len test ims {len(test_img_basenames)}")
 
