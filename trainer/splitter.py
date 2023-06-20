@@ -70,8 +70,6 @@ if __name__ == "__main__":
     if not args.silver_json_name is None:
         with open(os.path.join(args.root_dir, args.silver_json_name)) as f:
             silver_img_basenames = json.load(f)
-        print(silver_img_basenames[:10])
-        exit(1)
         silver_texts = [silver_line_extract_text(x) for x in silver_img_basenames]
         train_img_basenames += silver_img_basenames
         train_texts += silver_texts
