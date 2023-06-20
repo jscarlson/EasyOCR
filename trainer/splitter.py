@@ -68,7 +68,7 @@ if __name__ == "__main__":
     test_texts = [x['text'] for x in coco_test["images"]]
     ## silver training
     if not args.silver_json_name is None:
-        with open(os.path.join(args.root_dir, args.silver_json)) as f:
+        with open(os.path.join(args.root_dir, args.silver_json_name)) as f:
             silver_img_basenames = json.load(f)
         print(silver_img_basenames[:10])
         exit(1)
