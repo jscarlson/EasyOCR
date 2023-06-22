@@ -1,0 +1,47 @@
+number: 'None'
+symbol: 'None'
+lang_char: '/mnt/data01/owr_comp_synth_data/charset.txt'
+experiment_name: 'silver10_effocrGold_finetuneSynth'
+train_data: 'easyocr_data/silver10effocrGold_finetune_train'
+valid_data: 'easyocr_data/silver10effocrGold_finetune_val'
+test_data: 'easyocr_data/silver10effocrGold_finetune_test'
+manualSeed: 1111
+workers: 6
+batch_size: 128 #32
+num_iter: 80_000 # 300000
+valInterval: 8_000 # 20000
+saved_model: './saved_models/synth16k_pretrain/best_cer.pth'
+FT: True
+optim: False # default is Adadelta
+lr: 1.
+beta1: 0.9
+rho: 0.95
+eps: 0.00000001
+grad_clip: 5
+#Data processing
+select_data: 'silver10effocrGold_finetune_train' # this is dataset folder in train_data
+batch_ratio: '1' 
+total_data_usage_ratio: 1.0
+batch_max_length: 128
+imgH: 64
+imgW: 600
+rgb: False
+contrast_adjust: False
+sensitive: True
+PAD: True
+contrast_adjust: 0.0
+data_filtering_off: True
+vertical: False
+# Model Architecture
+Transformation: 'None'
+FeatureExtraction: 'VGG'
+SequenceModeling: 'BiLSTM'
+Prediction: 'CTC'
+num_fiducial: 20
+input_channel: 1
+output_channel: 256
+hidden_size: 256
+decode: 'greedy'
+new_prediction: False
+freeze_FeatureFxtraction: False
+freeze_SequenceModeling: False
