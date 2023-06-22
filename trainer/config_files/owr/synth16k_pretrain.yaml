@@ -1,6 +1,6 @@
 number: 'None'
 symbol: 'None'
-lang_char: '/mnt/data01/owr_comp_synth_data/charset.txt'
+lang_char: '/mnt/data01/owr_comp_synth_data/charset2.txt'
 experiment_name: 'synth16k_pretrain'
 train_data: 'easyocr_data/synth16k_pretrain_train'
 valid_data: 'easyocr_data/synth16k_pretrain_val'
