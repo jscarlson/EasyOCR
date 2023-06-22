@@ -20,6 +20,7 @@ def get_config(file_path):
             try:
                 opt.character = "".join(chr(int(i)) for i in f.read().split())
             except ValueError:
+                print(opt.lang_char)
                 print(f.read())
                 opt.character = "".join(i for i in f.read().split())
             opt.character += " "
