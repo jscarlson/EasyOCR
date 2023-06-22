@@ -1,6 +1,6 @@
 number: 'None'
 symbol: 'None'
-lang_char: '/mnt/data01/owr_comp_synth_data/charset2.txt'
+lang_char: 'en'
 experiment_name: 'silver10_effocrGold_finetuneSynth'
 train_data: 'easyocr_data/silver10effocrGold_finetune_train'
 valid_data: 'easyocr_data/silver10effocrGold_finetune_val'
