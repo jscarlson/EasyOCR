@@ -20,7 +20,7 @@ def get_config(file_path):
             try:
                 opt.character = "".join(chr(int(i)) for i in f.read().split())
             except ValueError:
-                print(f.read().split())
+                print(f.read())
                 opt.character = "".join(i for i in f.read().split())
             opt.character += " "
     elif opt.lang_char in ["ja", "en"]:
